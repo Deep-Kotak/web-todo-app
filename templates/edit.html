@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Edit Task</h1>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="task"
+            value="{{ task[1] }}"
+            required
+        >
+
+        <button type="submit">
+            Update Task
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -78,6 +78,52 @@ def get_stats():
 
     return total, completed, pending
 
+def search_tasks(keyword):
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM tasks WHERE task LIKE ?",
+        ('%' + keyword + '%',)
+    )
+
+    tasks = cursor.fetchall()
+
+    conn.close()
+
+    return tasks
+
+def get_task_by_id(task_id):
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM tasks WHERE id = ?",
+        (task_id,)
+    )
+
+    task = cursor.fetchone()
+
+    conn.close()
+
+    return task
+
+
+def update_task(task_id, updated_task):
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE tasks SET task = ? WHERE id = ?",
+        (updated_task, task_id)
+    )
+
+    conn.commit()
+    conn.close()
+
 def get_tasks():
 
     conn = connect_db()
