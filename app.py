@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from database import create_table
 
 app = Flask(__name__)
@@ -7,7 +7,7 @@ create_table()
 
 @app.route("/")
 def home():
-    return "<h1>Web To-Do List App</h1>"
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
