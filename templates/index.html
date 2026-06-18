@@ -31,10 +31,17 @@
 
         {% for task in tasks %}
 
-            <p>
-                {{ task[0] }}.
-                {{ task[1] }}
-            </p>
+           <div class="task-item">
+
+    <span>
+        {{ task[1] }}
+    </span>
+
+    <a href="/delete/{{ task[0] }}">
+        Delete
+    </a>
+
+</div>
 
         {% endfor %}
 

@@ -33,6 +33,18 @@ def add_task(task):
     conn.commit()
     conn.close()
 
+def delete_task(task_id):
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "DELETE FROM tasks WHERE id = ?",
+        (task_id,)
+    )
+
+    conn.commit()
+    conn.close()
 
 def get_tasks():
 

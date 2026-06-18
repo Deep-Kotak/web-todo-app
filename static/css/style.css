@@ -34,3 +34,19 @@ button {
 .tasks {
     margin-top: 20px;
 }
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 5px;
+}
+
+.task-item a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
