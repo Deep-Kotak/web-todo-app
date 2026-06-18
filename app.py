@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request, redirect
-from database import create_table, add_task, get_tasks, delete_task
+from database import (
+    create_table,
+    add_task,
+    get_tasks,
+    delete_task,
+    complete_task
+)
 
 app = Flask(__name__)
 
@@ -30,6 +36,14 @@ def home():
 def delete(task_id):
 
     delete_task(task_id)
+
+    return redirect("/")
+
+
+@app.route("/complete/<int:task_id>")
+def complete(task_id):
+
+    complete_task(task_id)
 
     return redirect("/")
 

@@ -31,15 +31,24 @@
 
         {% for task in tasks %}
 
-           <div class="task-item">
+<div class="task-item">
 
     <span>
         {{ task[1] }}
+        ({{ task[2] }})
     </span>
 
-    <a href="/delete/{{ task[0] }}">
-        Delete
-    </a>
+    <div>
+
+        <a href="/complete/{{ task[0] }}">
+            Complete
+        </a>
+
+        <a href="/delete/{{ task[0] }}">
+            Delete
+        </a>
+
+    </div>
 
 </div>
 

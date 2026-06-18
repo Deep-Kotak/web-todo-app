@@ -46,6 +46,19 @@ def delete_task(task_id):
     conn.commit()
     conn.close()
 
+def complete_task(task_id):
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "UPDATE tasks SET status = 'Completed' WHERE id = ?",
+        (task_id,)
+    )
+
+    conn.commit()
+    conn.close()
+
 def get_tasks():
 
     conn = connect_db()
