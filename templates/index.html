@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>To-Do App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
@@ -27,30 +29,55 @@
 
     </form>
 
+    {% if tasks|length == 0 %}
+
+        <p style="text-align:center;">
+            No Tasks Available
+        </p>
+
+    {% endif %}
+
     <div class="tasks">
 
         {% for task in tasks %}
 
-<div class="task-item">
+        <div class="task-item">
 
-    <span>
-        {{ task[1] }}
-        ({{ task[2] }})
-    </span>
+            <span>
 
-    <div>
+                {{ task[1] }}
 
-        <a href="/complete/{{ task[0] }}">
-            Complete
-        </a>
+                {% if task[2] == "Completed" %}
 
-        <a href="/delete/{{ task[0] }}">
-            Delete
-        </a>
+                    <span class="completed">
+                        (Completed)
+                    </span>
 
-    </div>
+                {% else %}
 
-</div>
+                    <span class="pending">
+                        (Pending)
+                    </span>
+
+                {% endif %}
+
+            </span>
+
+            <div class="task-actions">
+
+                <a class="complete-btn"
+                   href="/complete/{{ task[0] }}">
+                   Complete
+                </a>
+
+                <a class="delete-btn"
+                   href="/delete/{{ task[0] }}">
+                   Delete
+                </a>
+
+            </div>
+
+        </div>
 
         {% endfor %}
 
