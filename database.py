@@ -59,6 +59,25 @@ def complete_task(task_id):
     conn.commit()
     conn.close()
 
+def get_stats():
+
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM tasks")
+    total = cursor.fetchone()[0]
+
+    cursor.execute(
+        "SELECT COUNT(*) FROM tasks WHERE status='Completed'"
+    )
+    completed = cursor.fetchone()[0]
+
+    pending = total - completed
+
+    conn.close()
+
+    return total, completed, pending
+
 def get_tasks():
 
     conn = connect_db()

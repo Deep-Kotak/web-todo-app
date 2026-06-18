@@ -4,7 +4,8 @@ from database import (
     add_task,
     get_tasks,
     delete_task,
-    complete_task
+    complete_task,
+    get_stats
 )
 
 app = Flask(__name__)
@@ -26,9 +27,14 @@ def home():
 
     tasks = get_tasks()
 
+    total, completed, pending = get_stats()
+
     return render_template(
         "index.html",
-        tasks=tasks
+        tasks=tasks,
+        total=total,
+        completed=completed,
+        pending=pending
     )
 
 
